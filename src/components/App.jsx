@@ -1,16 +1,11 @@
+import { Navigation } from './Navigation/Navigation';
+import { Trending } from './Trending/Trending';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <Navigation></Navigation>
+      <Trending />
     </div>
   );
 };
