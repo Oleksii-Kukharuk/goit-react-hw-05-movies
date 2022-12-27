@@ -1,26 +1,11 @@
-import { useState, useEffect } from 'react';
-import { getMovies } from 'services/Api';
+// import { useState } from 'react';
 
-export const Trending = () => {
-  const [trends, setTrends] = useState([]);
-  useEffect(() => {
-    async function fetchTrendingMovies() {
-      try {
-        const trending = await getMovies();
-        setTrends([...trending.data.results]);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchTrendingMovies();
-  }, []);
-
+export const Trending = trend => {
+  console.log(trend);
   return (
     <ul>
-      <h2>Trending this week</h2>
-      {trends.map(({ id, title }) => (
-        <li key={id}>{title}</li>
-      ))}
+      {trend === null ??
+        trend.map(({ id, title }) => <li key={id}>{title}</li>)}
     </ul>
   );
 };
