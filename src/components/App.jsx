@@ -1,9 +1,9 @@
-import { Movies } from './Pages/Movies';
-import { Home } from './Pages/Home';
-// import { Trending } from './Trending/Trending';
-import { MovieDetail } from './Pages/MovieDetail';
+import { Movies } from '../Pages/Movies';
+import { Home } from '../Pages/Home';
+import { Trending } from './Trending/Trending';
+import { MovieDetail } from '../Pages/MovieDetail';
 import { Route, Routes, Link } from 'react-router-dom';
-import { NotFound } from './Pages/NotFound';
+import { NotFound } from '../Pages/NotFound';
 
 export const App = () => {
   return (
@@ -15,9 +15,9 @@ export const App = () => {
         </nav>
       </header>
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="trend" element={<Trending />} />
-        </Route> */}
+        <Route path="/" element={<Home />}>
+          <Route path="trend" element={<Trending />} />
+        </Route>
         <Route path="movies" element={<Movies />} />
         <Route path="movies/:movieId" element={<MovieDetail />} />
         <Route path="*" element={<NotFound />} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { getMovieBySearch } from 'services/Api';
+import { Link } from 'react-router-dom';
 
 export const Movies = () => {
   const [query, setQuery] = useState('');
@@ -43,7 +44,11 @@ export const Movies = () => {
       </form>
       <ul>
         {filmData.map(({ id, title }) => {
-          return <li key={id}>{title}</li>;
+          return (
+            <li key={id}>
+              <Link to={`${id}`}>{title}</Link>
+            </li>
+          );
         })}
       </ul>
     </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { getMovies } from 'services/Api';
-// import { Trending } from 'components/Trending/Trending';
+import { Trending } from 'components/Trending/Trending';
 
 export const Home = () => {
   const [trends, setTrends] = useState([]);
@@ -20,12 +20,12 @@ export const Home = () => {
   return (
     <>
       <h2>Trending this week</h2>
-      <ul>
-        {/* <Trending trends={trends} /> */}
-        {trends.map(({ id, title }) => (
+      {/* <ul> */}
+      <Trending trends={trends} />
+      {/* {trends.map(({ id, title }) => (
           <li key={id}>{title}</li>
-        ))}
-      </ul>
+        ))} */}
+      {/* </ul> */}
     </>
   );
 };
