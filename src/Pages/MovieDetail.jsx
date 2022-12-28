@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link, Outlet } from 'react-router-dom';
 import { getMovieDetailsById } from 'services/Api';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -15,7 +15,6 @@ export const MovieDetail = () => {
       try {
         const movieById = await getMovieDetailsById(id);
         setFilmData(movieById.data);
-        console.log(id);
       } catch (error) {
         console.log(error);
       }
@@ -32,13 +31,12 @@ export const MovieDetail = () => {
 
   const getGenres = genres();
 
-  console.log(filmData);
   return (
     <div>
       <button type="button"> Go back</button>
       <article>
         <img
-          src={'https://image.tmdb.org/t/p/w500' + filmData.poster_path}
+          src={'https://image.tmdb.org/t/p/w500/' + filmData.poster_path}
           alt={filmData.original_title}
         />
         <ul>
@@ -56,8 +54,13 @@ export const MovieDetail = () => {
         </ul>
         <p>Additional info</p>
         <ul>
-          <li>Cast</li>
-          <li>Reviews</li>
+          <li>
+            <Link to="cast">Cast</Link>
+          </li>
+          <li>
+            <Link to="reviews">Reviews</Link>
+          </li>
+          <Outlet />
         </ul>
       </article>
     </div>

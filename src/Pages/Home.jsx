@@ -17,15 +17,5 @@ export const Home = () => {
     fetchTrendingMovies();
   }, []);
 
-  return (
-    <>
-      <h2>Trending this week</h2>
-      {/* <ul> */}
-      <Trending trends={trends} />
-      {/* {trends.map(({ id, title }) => (
-          <li key={id}>{title}</li>
-        ))} */}
-      {/* </ul> */}
-    </>
-  );
+  return <Trending trends={trends} />;
 };
