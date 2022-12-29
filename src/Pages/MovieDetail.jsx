@@ -1,4 +1,4 @@
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetailsById } from 'services/Api';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -6,6 +6,10 @@ import { useState } from 'react';
 export const MovieDetail = () => {
   const [filmData, setFilmData] = useState('');
   const { movieId } = useParams();
+
+  const location = useLocation();
+  const backLinkHref =
+    location.state?.from ?? '/goit-react-hw-05-movies/movies';
 
   useEffect(() => {
     if (!movieId) {
@@ -33,7 +37,7 @@ export const MovieDetail = () => {
 
   return (
     <div>
-      <button type="button"> Go back</button>
+      <Link to={backLinkHref}>Go back</Link>
       <article>
         <img
           src={'https://image.tmdb.org/t/p/w500/' + filmData.poster_path}

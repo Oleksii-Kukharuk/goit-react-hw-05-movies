@@ -1,32 +1,34 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { getMovieBySearch } from 'services/Api';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 export const Movies = () => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useSearchParams();
   const [filmData, setFilmData] = useState([]);
 
+  const currentQuery = query.get('query') ?? '';
+
   useEffect(() => {
-    if (!query) {
+    if (!currentQuery) {
       return;
     }
     async function fetchMovie() {
       try {
-        const movieByQuery = await getMovieBySearch(query);
+        const movieByQuery = await getMovieBySearch(currentQuery);
         setFilmData(movieByQuery.data.results);
       } catch (error) {
         console.log(error);
       }
     }
     fetchMovie();
-  }, [query]);
+  }, [currentQuery]);
 
   const onSearchSubmit = e => {
     e.preventDefault();
     const searchForm = e.target;
 
-    setQuery(searchForm.elements.querySearch.value);
+    setQuery({ query: searchForm.elements.querySearch.value });
     searchForm.reset();
   };
 
